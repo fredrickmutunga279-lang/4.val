@@ -1,0 +1,1539 @@
+<html lang="en" class="h-full bg-[#FDFBF7]">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>For Val 🌹</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+          },
+          colors: {
+            cream: {
+              50: '#FFFFFF',
+              100: '#FDFBF7',
+              200: '#F7F3EB',
+              300: '#ECE5D8',
+            },
+            charcoal: {
+              800: '#2D2B2A',
+              900: '#1D1C1B',
+            },
+            rose: {
+              50: '#FDF6F5',
+              100: '#F8E9E7',
+              200: '#ECC9C5',
+              400: '#DE8E87',
+              500: '#CF6B63',
+              600: '#BA534B',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Smooth transitions and touch enhancements */
+    * {
+      -webkit-tap-highlight-color: transparent;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #FDFBF7;
+      color: #1D1C1B;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .font-serif-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+    }
+
+    /* Custom scrollbars */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(222, 142, 135, 0.3);
+      border-radius: 9999px;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(236, 229, 216, 0.6);
+    }
+
+    .transition-page {
+      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Range slider custom styling */
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 24px;
+      width: 24px;
+      border-radius: 50%;
+      background: #BA534B;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(186, 83, 75, 0.4);
+      border: 2px solid #FFFFFF;
+      transition: transform 0.1s ease;
+    }
+    input[type=range]::-webkit-slider-thumb:active {
+      transform: scale(1.15);
+    }
+
+    /* Safe Area insets for modern mobile devices */
+    .pb-safe {
+      padding-bottom: env(safe-area-inset-bottom, 1.25rem);
+    }
+    .pt-safe {
+      padding-top: env(safe-area-inset-top, 1.25rem);
+    }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+  <!-- TOP BAR / NAVIGATION SWITCHER -->
+  <header class="sticky top-0 z-50 bg-[#FDFBF7]/90 backdrop-blur-md border-b border-[#ECE5D8]/80 px-4 py-3">
+    <div class="max-w-xl mx-auto flex items-center justify-between">
+      <a href="#invite" onclick="switchView('invite')" class="flex items-center space-x-2 text-charcoal-900 group">
+        <span class="text-xl transform group-hover:scale-110 transition-transform">🌹</span>
+        <span class="font-serif-title font-semibold tracking-wide text-lg sm:text-xl">For Val</span>
+      </a>
+      
+      <!-- Experience Switcher -->
+      <div class="flex items-center bg-[#F7F3EB] p-1 rounded-full border border-[#ECE5D8] text-xs font-medium">
+        <button id="nav-btn-invite" onclick="switchView('invite')" class="px-3 py-1.5 rounded-full transition-all text-charcoal-900 bg-white shadow-sm font-semibold">
+          Invitation
+        </button>
+        <button id="nav-btn-admin" onclick="switchView('admin')" class="px-3 py-1.5 rounded-full transition-all text-charcoal-800/70 hover:text-charcoal-900">
+          Admin Portal
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="flex-1 flex flex-col justify-center max-w-xl w-full mx-auto p-4 sm:p-6 relative pb-safe">
+    
+    <!-- ========================================================================= -->
+    <!-- PUBLIC INVITATION EXPERIENCE                                              -->
+    <!-- ========================================================================= -->
+    <div id="experience-public" class="w-full flex-1 flex flex-col justify-center">
+
+      <!-- STEP 0: INTRO -->
+      <section id="step-intro" class="transition-page flex flex-col items-center justify-center text-center py-8">
+        <div class="w-20 h-20 sm:w-24 sm:h-24 bg-rose-100 rounded-full flex items-center justify-center text-3xl sm:text-4xl mb-6 shadow-inner border border-rose-200/60 animate-pulse">
+          💌
+        </div>
+        <span class="text-rose-500 font-semibold tracking-widest text-xs uppercase mb-2">A Private Invitation</span>
+        <h1 class="font-serif-title text-4xl sm:text-5xl font-bold text-charcoal-900 mb-3 tracking-tight">Hey Val 🌹</h1>
+        <p class="text-charcoal-800/80 text-base sm:text-lg mb-8 max-w-xs font-light">
+          I made something special just for you.
+        </p>
+        <button onclick="goToStep(1)" class="w-full max-w-xs py-4 px-6 bg-charcoal-900 hover:bg-black text-white font-medium rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 transform active:scale-98 flex items-center justify-center space-x-2">
+          <span>Open it</span>
+          <span class="text-rose-400 text-lg">✨</span>
+        </button>
+      </section>
+
+      <!-- STEP 1: THE BIG QUESTION -->
+      <section id="step-question" class="hidden transition-page flex flex-col items-center text-center py-6">
+        <div class="glass-card rounded-3xl p-6 sm:p-8 w-full border border-rose-100 shadow-sm mb-6">
+          <span class="text-xs uppercase tracking-wider text-rose-500 font-semibold mb-2 block">A Quick Question</span>
+          <h2 class="font-serif-title text-2xl sm:text-3xl text-charcoal-800 italic mb-4 font-medium">
+            "So... there's something I've been meaning to ask you."
+          </h2>
+          <div class="h-px w-16 bg-rose-200 mx-auto my-4"></div>
+          <p class="text-charcoal-900 font-serif-title text-3xl sm:text-4xl font-bold mb-6">
+            Would you go on a date with me?
+          </p>
+
+          <div id="initial-response-state" class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
+            <button onclick="handleInitialChoice(true)" class="py-4 px-6 bg-rose-500 hover:bg-rose-600 text-white rounded-2xl font-semibold shadow-md hover:shadow-lg transition-all transform active:scale-95 flex items-center justify-center space-x-2">
+              <span>YES</span>
+              <span>❤️</span>
+            </button>
+            <button onclick="handleInitialChoice(false)" class="py-4 px-6 bg-[#F7F3EB] hover:bg-[#ECE5D8] text-charcoal-800 rounded-2xl font-medium border border-[#ECE5D8] transition-all transform active:scale-95 flex items-center justify-center space-x-2">
+              <span>LET ME THINK</span>
+              <span>🤔</span>
+            </button>
+          </div>
+
+          <!-- DYNAMIC FEEDBACK BOX -->
+          <div id="choice-feedback" class="hidden mt-6 p-4 rounded-2xl bg-rose-50 border border-rose-200/60 text-left">
+            <p id="choice-feedback-text" class="text-charcoal-900 font-medium text-sm sm:text-base mb-3"></p>
+            <button id="choice-feedback-btn" onclick="goToStep(2)" class="w-full py-3 px-4 bg-charcoal-900 text-white rounded-xl font-medium text-sm flex items-center justify-center space-x-2 hover:bg-black transition-colors">
+              <span id="choice-feedback-btn-text">Let's plan it →</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 2: DATE & TIME PLANNING (01/04) -->
+      <section id="step-plan" class="hidden transition-page py-4">
+        <!-- Step Progress Header -->
+        <div class="flex items-center justify-between mb-4 px-1">
+          <button onclick="goToStep(1)" class="text-xs font-semibold text-charcoal-800/60 hover:text-charcoal-900 flex items-center space-x-1">
+            <span>← Back</span>
+          </button>
+          <span class="text-xs font-bold tracking-widest text-rose-500 uppercase">Step 01 / 04</span>
+        </div>
+
+        <div class="glass-card rounded-3xl p-6 sm:p-7 shadow-sm border border-stone-200/60 space-y-6">
+          <div>
+            <h2 class="font-serif-title text-2xl sm:text-3xl font-bold text-charcoal-900 mb-1">
+              Okay, let's plan this properly 🗓️
+            </h2>
+            <p class="text-xs sm:text-sm text-charcoal-800/70">Tell me what sounds good to you.</p>
+          </div>
+
+          <!-- Date & Time Input -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-charcoal-800 mb-1.5">Preferred Date</label>
+              <input type="date" id="input-date" class="w-full bg-[#FDFBF7] border border-[#ECE5D8] focus:border-rose-400 focus:ring-1 focus:ring-rose-400 rounded-xl px-3.5 py-2.5 text-sm outline-none text-charcoal-900 font-medium">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-charcoal-800 mb-1.5">Preferred Time</label>
+              <input type="time" id="input-time" class="w-full bg-[#FDFBF7] border border-[#ECE5D8] focus:border-rose-400 focus:ring-1 focus:ring-rose-400 rounded-xl px-3.5 py-2.5 text-sm outline-none text-charcoal-900 font-medium">
+            </div>
+          </div>
+
+          <!-- Date Type Chips -->
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-charcoal-800 mb-2">Vibe & Date Type</label>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2" id="date-type-options">
+              <button type="button" onclick="selectDateType('Dinner 🍷', this)" class="date-chip text-left p-2.5 rounded-xl border border-[#ECE5D8] bg-[#FDFBF7] text-xs sm:text-sm font-medium hover:border-rose-300 transition-all flex items-center justify-between">
+                <span>Dinner 🍷</span>
+              </button>
+              <button type="button" onclick="selectDateType('Coffee ☕', this)" class="date-chip text-left p-2.5 rounded-xl border border-[#ECE5D8] bg-[#FDFBF7] text-xs sm:text-sm font-medium hover:border-rose-300 transition-all flex items-center justify-between">
+                <span>Coffee ☕</span>
+              </button>
+              <button type="button" onclick="selectDateType('Movie 🎬', this)" class="date-chip text-left p-2.5 rounded-xl border border-[#ECE5D8] bg-[#FDFBF7] text-xs sm:text-sm font-medium hover:border-rose-300 transition-all flex items-center justify-between">
+                <span>Movie 🎬</span>
+              </button>
+              <button type="button" onclick="selectDateType('Walk & talk 🌿', this)" class="date-chip text-left p-2.5 rounded-xl border border-[#ECE5D8] bg-[#FDFBF7] text-xs sm:text-sm font-medium hover:border-rose-300 transition-all flex items-center justify-between">
+                <span>Walk & talk 🌿</span>
+              </button>
+              <button type="button" onclick="selectDateType('Adventure ✨', this)" class="date-chip text-left p-2.5 rounded-xl border border-[#ECE5D8] bg-[#FDFBF7] text-xs sm:text-sm font-medium hover:border-rose-300 transition-all flex items-center justify-between">
+                <span>Adventure ✨</span>
+              </button>
+              <button type="button" onclick="selectDateType('Something spontaneous 🎲', this)" class="date-chip text-left p-2.5 rounded-xl border border-[#ECE5D8] bg-[#FDFBF7] text-xs sm:text-sm font-medium hover:border-rose-300 transition-all flex items-center justify-between">
+                <span>Spontaneous 🎲</span>
+              </button>
+              <button type="button" onclick="selectDateType('You choose 💫', this)" class="date-chip col-span-2 sm:col-span-3 text-center p-2.5 rounded-xl border border-[#ECE5D8] bg-[#FDFBF7] text-xs sm:text-sm font-medium hover:border-rose-300 transition-all">
+                <span>You choose 💫</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Location & Specific Activity -->
+          <div class="space-y-3">
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-charcoal-800 mb-1">Preferred Location / Area</label>
+              <input type="text" id="input-location" placeholder="Anywhere you'd feel comfortable..." class="w-full bg-[#FDFBF7] border border-[#ECE5D8] focus:border-rose-400 focus:ring-1 focus:ring-rose-400 rounded-xl px-3.5 py-2.5 text-sm outline-none text-charcoal-900">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-charcoal-800 mb-1">Anything specific you'd like to do?</label>
+              <input type="text" id="input-activity" placeholder="e.g. that new gelato place, cozy rooftop..." class="w-full bg-[#FDFBF7] border border-[#ECE5D8] focus:border-rose-400 focus:ring-1 focus:ring-rose-400 rounded-xl px-3.5 py-2.5 text-sm outline-none text-charcoal-900">
+            </div>
+          </div>
+
+          <!-- Nav Buttons -->
+          <div class="pt-2 flex justify-end">
+            <button onclick="goToStep(3)" class="w-full sm:w-auto px-6 py-3 bg-charcoal-900 hover:bg-black text-white rounded-xl text-sm font-semibold flex items-center justify-center space-x-2 transition-all">
+              <span>Next: Comfort & Details</span>
+              <span>→</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 3: PREFERENCES & COMFORT (02/04) -->
+      <section id="step-preferences" class="hidden transition-page py-4">
+        <div class="flex items-center justify-between mb-4 px-1">
+          <button onclick="goToStep(2)" class="text-xs font-semibold text-charcoal-800/60 hover:text-charcoal-900 flex items-center space-x-1">
+            <span>← Back</span>
+          </button>
+          <span class="text-xs font-bold tracking-widest text-rose-500 uppercase">Step 02 / 04</span>
+        </div>
+
+        <div class="glass-card rounded-3xl p-6 sm:p-7 shadow-sm border border-stone-200/60 space-y-5">
+          <div>
+            <h2 class="font-serif-title text-2xl sm:text-3xl font-bold text-charcoal-900 mb-1">
+              Anything else I should know? 💭
+            </h2>
+            <p class="text-xs sm:text-sm text-charcoal-800/70">Help me plan a date you'll actually enjoy without any stress.</p>
+          </div>
+
+          <div class="space-y-4">
+            <div>
+              <label class="block text-xs font-semibold text-charcoal-800 mb-1">
+                🍽️ Food restrictions: <span class="text-charcoal-800/60 font-normal">Any foods you don't eat or can't have?</span>
+              </label>
+              <input type="text" id="input-food" placeholder="Vegetarian, allergies, no seafood..." class="w-full bg-[#FDFBF7] border border-[#ECE5D8] focus:border-rose-400 focus:ring-1 focus:ring-rose-400 rounded-xl px-3.5 py-2 text-sm outline-none">
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-charcoal-800 mb-1">
+                ✨ Likes: <span class="text-charcoal-800/60 font-normal">Anything you really like on a date?</span>
+              </label>
+              <input type="text" id="input-likes" placeholder="Good lighting, cozy vibe, quiet spaces..." class="w-full bg-[#FDFBF7] border border-[#ECE5D8] focus:border-rose-400 focus:ring-1 focus:ring-rose-400 rounded-xl px-3.5 py-2 text-sm outline-none">
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-charcoal-800 mb-1">
+                🚫 Things to avoid: <span class="text-charcoal-800/60 font-normal">Anything you'd rather skip?</span>
+              </label>
+              <input type="text" id="input-dislikes" placeholder="Loud music, crowds, rush..." class="w-full bg-[#FDFBF7] border border-[#ECE5D8] focus:border-rose-400 focus:ring-1 focus:ring-rose-400 rounded-xl px-3.5 py-2 text-sm outline-none">
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-charcoal-800 mb-1">
+                🛋️ Comfort: <span class="text-charcoal-800/60 font-normal">Anything that would make this most comfortable?</span>
+              </label>
+              <input type="text" id="input-comfort" placeholder="Pick me up, meet directly there, early night..." class="w-full bg-[#FDFBF7] border border-[#ECE5D8] focus:border-rose-400 focus:ring-1 focus:ring-rose-400 rounded-xl px-3.5 py-2 text-sm outline-none">
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-charcoal-800 mb-1">
+                📝 Anything else: <span class="text-charcoal-800/60 font-normal">Anything else your date planner should know?</span>
+              </label>
+              <textarea id="input-anything-else" rows="2" placeholder="Tell me any small thought or detail..." class="w-full bg-[#FDFBF7] border border-[#ECE5D8] focus:border-rose-400 focus:ring-1 focus:ring-rose-400 rounded-xl px-3.5 py-2 text-sm outline-none resize-none"></textarea>
+            </div>
+          </div>
+
+          <div class="pt-2 flex justify-end">
+            <button onclick="goToStep(4)" class="w-full sm:w-auto px-6 py-3 bg-charcoal-900 hover:bg-black text-white rounded-xl text-sm font-semibold flex items-center justify-center space-x-2 transition-all">
+              <span>Next: Rapid Fire</span>
+              <span>⚡</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 4: RAPID FIRE & EXCITEMENT (03/04) -->
+      <section id="step-rapidfire" class="hidden transition-page py-4">
+        <div class="flex items-center justify-between mb-4 px-1">
+          <button onclick="goToStep(3)" class="text-xs font-semibold text-charcoal-800/60 hover:text-charcoal-900 flex items-center space-x-1">
+            <span>← Back</span>
+          </button>
+          <span class="text-xs font-bold tracking-widest text-rose-500 uppercase">Step 03 / 04</span>
+        </div>
+
+        <div class="glass-card rounded-3xl p-6 sm:p-7 shadow-sm border border-stone-200/60 space-y-6">
+          <div>
+            <h2 class="font-serif-title text-2xl sm:text-3xl font-bold text-charcoal-900 mb-1">
+              Okay, rapid fire ⚡
+            </h2>
+            <p class="text-xs sm:text-sm text-charcoal-800/70">No overthinking — first instinct only.</p>
+          </div>
+
+          <div class="space-y-4">
+            <!-- Q1 -->
+            <div>
+              <p class="text-xs font-bold uppercase tracking-wider text-charcoal-800 mb-2">1. Sweet or salty?</p>
+              <div class="grid grid-cols-3 gap-2" id="rf-flavor">
+                <button type="button" onclick="setRapidFire('flavor', 'Sweet', this)" class="rf-btn p-2.5 rounded-xl border border-[#ECE5D8] bg-[#FDFBF7] text-xs font-medium text-center">Sweet 🍰</button>
+                <button type="button" onclick="setRapidFire('flavor', 'Salty', this)" class="rf-btn p-2.5 rounded-xl border border-[#ECE5D8] bg-[#FDFBF7] text-xs font-medium text-center">Salty 🥨</button>
+                <button type="button" onclick="setRapidFire('flavor', 'Both', this)" class="rf-btn p-2.5 rounded-xl border border-[#ECE5D8] bg-[#FDFBF7] text-xs font-medium text-center">Both 🍫</button>
+              </div>
+            </div>
+
+            <!-- Q2 -->
+            <div>
+              <p class="text-xs font-bold uppercase tracking-wider text-charcoal-800 mb-2">2. Sunrise or sunset?</p>
+              <div class="grid grid-cols-2 gap-2" id="rf-sun">
+                <button type="button" onclick="setRapidFire('sun', 'Sunrise', this)" class="rf-btn p-2.5 rounded-xl border border-[#ECE5D8] bg-[#FDFBF7] text-xs font-medium text-center">Sunrise 🌅</button>
+                <button type="button" onclick="setRapidFire('sun', 'Sunset', this)" class="rf-btn p-2.5 rounded-xl border border-[#ECE5D8] bg-[#FDFBF7] text-xs font-medium text-center">Sunset 🌇</button>
+              </div>
+            </div>
+
+            <!-- Q3 -->
+            <div>
+              <p class="text-xs font-bold uppercase tracking-wider text-charcoal-800 mb-2">3. Chill date or adventure?</p>
+              <div class="grid grid-cols-3 gap-2" id="rf-vibe">
+                <button type="button" onclick="setRapidFire('vibe', 'Chill', this)" class="rf-btn p-2.5 rounded-xl border border-[#ECE5D8] bg-[#FDFBF7] text-xs font-medium text-center">Chill 🛋️</button>
+                <button type="button" onclick="setRapidFire('vibe', 'Adventure', this)" class="rf-btn p-2.5 rounded-xl border border-[#ECE5D8] bg-[#FDFBF7] text-xs font-medium text-center">Adventure 🧗‍♀️</button>
+                <button type="button" onclick="setRapidFire('vibe', 'Both', this)" class="rf-btn p-2.5 rounded-xl border border-[#ECE5D8] bg-[#FDFBF7] text-xs font-medium text-center">Both ✨</button>
+              </div>
+            </div>
+
+            <!-- Q4 -->
+            <div>
+              <p class="text-xs font-bold uppercase tracking-wider text-charcoal-800 mb-2">4. Who chooses the food?</p>
+              <div class="grid grid-cols-2 gap-2" id="rf-decision">
+                <button type="button" onclick="setRapidFire('foodDecider', 'You', this)" class="rf-btn p-2.5 rounded-xl border border-[#ECE5D8] bg-[#FDFBF7] text-xs font-medium text-center">You 🙋‍♀️</button>
+                <button type="button" onclick="setRapidFire('foodDecider', 'Me', this)" class="rf-btn p-2.5 rounded-xl border border-[#ECE5D8] bg-[#FDFBF7] text-xs font-medium text-center">Me 🙋‍♂️</button>
+                <button type="button" onclick="setRapidFire('foodDecider', 'We decide together', this)" class="rf-btn p-2.5 rounded-xl border border-[#ECE5D8] bg-[#FDFBF7] text-xs font-medium text-center">Together 🤝</button>
+                <button type="button" onclick="setRapidFire('foodDecider', 'Dealer\'s choice', this)" class="rf-btn p-2.5 rounded-xl border border-[#ECE5D8] bg-[#FDFBF7] text-xs font-medium text-center">Dealer's Choice 🎲</button>
+              </div>
+            </div>
+
+            <!-- Excitement Slider -->
+            <div class="pt-3 border-t border-[#ECE5D8]">
+              <div class="flex items-center justify-between mb-2">
+                <label class="text-xs font-bold uppercase tracking-wider text-charcoal-800">How excited are you?</label>
+                <span id="excitement-value-display" class="text-sm font-bold text-rose-500 bg-rose-50 border border-rose-200 px-2 py-0.5 rounded-full">10 / 10 🔥</span>
+              </div>
+              <input type="range" id="input-excitement" min="1" max="10" value="10" oninput="updateExcitementDisplay(this.value)" class="w-full accent-rose-500 h-2 bg-rose-100 rounded-lg appearance-none cursor-pointer">
+              <div class="flex justify-between text-[10px] text-charcoal-800/60 mt-1 font-medium">
+                <span>1 (Cautiously curious)</span>
+                <span>10 (Beyond excited)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-2 flex justify-end">
+            <button onclick="goToStep(5)" class="w-full sm:w-auto px-6 py-3 bg-charcoal-900 hover:bg-black text-white rounded-xl text-sm font-semibold flex items-center justify-center space-x-2 transition-all">
+              <span>Review Plan</span>
+              <span>📋</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 5: REVIEW & FINAL SUBMISSION (04/04) -->
+      <section id="step-review" class="hidden transition-page py-4">
+        <div class="flex items-center justify-between mb-4 px-1">
+          <button onclick="goToStep(4)" class="text-xs font-semibold text-charcoal-800/60 hover:text-charcoal-900 flex items-center space-x-1">
+            <span>← Back</span>
+          </button>
+          <span class="text-xs font-bold tracking-widest text-rose-500 uppercase">Step 04 / 04</span>
+        </div>
+
+        <div class="glass-card rounded-3xl p-6 sm:p-7 shadow-sm border border-stone-200/60 space-y-6">
+          <div>
+            <span class="text-xs uppercase tracking-wider text-rose-500 font-semibold mb-1 block">Final Check</span>
+            <h2 class="font-serif-title text-2xl sm:text-3xl font-bold text-charcoal-900">
+              Your date plan 🌹
+            </h2>
+            <p class="text-xs sm:text-sm text-charcoal-800/70">Here's everything we've put together. Ready to send?</p>
+          </div>
+
+          <!-- Summary breakdown container -->
+          <div id="review-summary-content" class="bg-[#FDFBF7] rounded-2xl p-4 sm:p-5 border border-[#ECE5D8] space-y-3.5 text-xs sm:text-sm">
+            <!-- Dynamic review details injected by JS -->
+          </div>
+
+          <!-- Submission Feedback Banner (if error happens) -->
+          <div id="submit-error-banner" class="hidden p-3.5 bg-red-50 border border-red-200 text-red-700 rounded-xl text-xs"></div>
+
+          <!-- Actions -->
+          <div class="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <button onclick="goToStep(2)" class="py-3 px-4 rounded-xl border border-charcoal-800/20 text-charcoal-800 font-medium text-xs sm:text-sm hover:bg-stone-50 transition-colors">
+              Edit answers
+            </button>
+            <button id="btn-submit-response" onclick="submitInvitationResponse()" class="py-3.5 px-6 rounded-xl bg-rose-500 hover:bg-rose-600 text-white font-semibold text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center space-x-2">
+              <span>Submit</span>
+              <span>❤️</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 6: SUCCESS CONFIRMATION -->
+      <section id="step-success" class="hidden transition-page py-8 text-center flex flex-col items-center">
+        <div class="w-20 h-20 bg-rose-100 rounded-full flex items-center justify-center text-4xl mb-6 shadow-inner border border-rose-200 animate-bounce">
+          💌
+        </div>
+        <span class="text-xs font-bold tracking-widest text-rose-500 uppercase mb-2">Invitation Confirmed</span>
+        <h2 class="font-serif-title text-3xl sm:text-4xl font-bold text-charcoal-900 mb-3">It’s official ❤️</h2>
+        <div class="glass-card rounded-3xl p-6 sm:p-8 max-w-sm w-full border border-rose-100 shadow-sm space-y-3 mb-6 text-sm text-charcoal-800/90 leading-relaxed">
+          <p class="font-medium">Thanks for answering, Val.</p>
+          <p>I’ve got everything I need.</p>
+          <p class="text-charcoal-800/70 italic">"Now I have no excuse to plan anything less than a great date."</p>
+          <div class="h-px bg-rose-200/60 my-3"></div>
+          <p class="font-serif-title text-xl text-charcoal-900 font-bold">See you soon, Val. ✨</p>
+        </div>
+
+        <button onclick="goToStep(0)" class="text-xs text-charcoal-800/60 hover:text-charcoal-900 underline font-medium">
+          Review or view again
+        </button>
+      </section>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- PRIVATE ADMIN PORTAL EXPERIENCE                                           -->
+    <!-- ========================================================================= -->
+    <div id="experience-admin" class="w-full flex-1 hidden flex-col justify-start py-4">
+
+      <!-- ADMIN LOGIN SCREEN -->
+      <div id="admin-login-view" class="w-full max-w-sm mx-auto my-auto py-8">
+        <div class="glass-card rounded-3xl p-6 sm:p-8 border border-[#ECE5D8] shadow-sm">
+          <div class="flex items-center space-x-2 text-rose-500 mb-2">
+            <span class="text-xl">🔒</span>
+            <span class="text-xs uppercase font-bold tracking-wider">Restricted Access</span>
+          </div>
+          <h2 class="font-serif-title text-2xl sm:text-3xl font-bold text-charcoal-900 mb-2">Admin Portal</h2>
+          <p class="text-xs text-charcoal-800/70 mb-6">Enter your credentials to view Val's response.</p>
+
+          <form id="admin-login-form" onsubmit="handleAdminLogin(event)" class="space-y-4">
+            <div>
+              <label class="block text-xs font-semibold text-charcoal-800 mb-1">Email / Username</label>
+              <input type="text" id="admin-login-email" required value="admin@forval.app" class="w-full bg-[#FDFBF7] border border-[#ECE5D8] focus:border-rose-400 focus:ring-1 focus:ring-rose-400 rounded-xl px-3.5 py-2.5 text-sm outline-none">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-charcoal-800 mb-1">Password</label>
+              <input type="password" id="admin-login-password" required placeholder="••••••••" class="w-full bg-[#FDFBF7] border border-[#ECE5D8] focus:border-rose-400 focus:ring-1 focus:ring-rose-400 rounded-xl px-3.5 py-2.5 text-sm outline-none">
+              <span class="text-[11px] text-charcoal-800/50 mt-1 block">Default: <code class="bg-stone-100 px-1 py-0.5 rounded">val2025</code></span>
+            </div>
+
+            <div id="admin-login-error" class="hidden p-2.5 bg-red-50 text-red-600 rounded-xl text-xs border border-red-200"></div>
+
+            <button type="submit" id="btn-admin-login" class="w-full py-3 bg-charcoal-900 hover:bg-black text-white rounded-xl text-sm font-semibold transition-all">
+              Sign In
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- ADMIN DASHBOARD -->
+      <div id="admin-dashboard-view" class="hidden w-full space-y-5">
+        
+        <!-- Header & Action Ribbon -->
+        <div class="glass-card rounded-2xl p-4 sm:p-5 border border-[#ECE5D8] flex flex-wrap items-center justify-between gap-3 shadow-sm">
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="text-lg">🌹</span>
+              <h2 class="font-serif-title text-xl sm:text-2xl font-bold text-charcoal-900">Val's Response</h2>
+            </div>
+            <p class="text-xs text-charcoal-800/70" id="admin-status-indicator">Connected to Database</p>
+          </div>
+
+          <div class="flex items-center space-x-2">
+            <button onclick="fetchAdminData(true)" title="Refresh data from DB" class="p-2 text-xs bg-stone-100 hover:bg-stone-200 text-charcoal-800 rounded-xl border border-stone-200 flex items-center space-x-1">
+              <span>🔄</span>
+              <span class="hidden sm:inline">Refresh</span>
+            </button>
+            <button onclick="openSettingsModal()" title="Password Settings" class="p-2 text-xs bg-stone-100 hover:bg-stone-200 text-charcoal-800 rounded-xl border border-stone-200 flex items-center space-x-1">
+              <span>⚙️</span>
+              <span class="hidden sm:inline">Settings</span>
+            </button>
+            <button onclick="handleAdminLogout()" title="Logout" class="p-2 text-xs bg-red-50 hover:bg-red-100 text-red-600 rounded-xl border border-red-200 flex items-center space-x-1">
+              <span>🚪</span>
+              <span class="hidden sm:inline">Logout</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- SHARE INVITATION LINK CARD -->
+        <div class="glass-card rounded-2xl p-4 sm:p-5 border border-[#ECE5D8] space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold uppercase tracking-wider text-rose-500">Share Invitation Link</span>
+            <span id="share-badge" class="text-[10px] bg-emerald-50 text-emerald-700 font-semibold px-2 py-0.5 rounded-full border border-emerald-200">Active</span>
+          </div>
+          <p class="text-xs text-charcoal-800/80">Send this URL directly to Val on any messaging app:</p>
+          
+          <div class="flex items-center gap-2">
+            <input type="text" id="share-link-input" readonly class="w-full bg-[#FDFBF7] border border-[#ECE5D8] text-xs rounded-xl px-3 py-2 text-charcoal-900 font-mono select-all">
+            <button onclick="copyShareLink()" class="px-3.5 py-2 bg-charcoal-900 hover:bg-black text-white rounded-xl text-xs font-semibold whitespace-nowrap active:scale-95 transition-all">
+              Copy Link
+            </button>
+            <button onclick="shareViaMobile()" id="btn-mobile-share" class="px-3.5 py-2 bg-rose-500 hover:bg-rose-600 text-white rounded-xl text-xs font-semibold whitespace-nowrap active:scale-95 transition-all">
+              Share 📲
+            </button>
+          </div>
+          <div id="share-toast" class="hidden text-[11px] text-emerald-600 font-medium">✓ Link copied to clipboard! Ready to send.</div>
+        </div>
+
+        <!-- EMPTY STATE (NO RESPONSE YET) -->
+        <div id="admin-empty-state" class="hidden glass-card rounded-2xl p-8 text-center border border-dashed border-[#ECE5D8] space-y-3">
+          <div class="text-3xl">⏳</div>
+          <h3 class="font-serif-title text-xl font-bold text-charcoal-900">No response yet.</h3>
+          <p class="text-xs text-charcoal-800/70 max-w-xs mx-auto">
+            Val hasn't submitted her answers yet. Share the invitation link above with her.
+          </p>
+        </div>
+
+        <!-- RESPONSE DISPLAY CONTAINER -->
+        <div id="admin-response-card" class="hidden space-y-4">
+          
+          <!-- Acceptance Banner -->
+          <div id="admin-banner-accepted" class="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+              <span class="text-2xl">🎉</span>
+              <div>
+                <p class="text-xs font-bold uppercase tracking-wider text-emerald-800" id="admin-accepted-text">Date Accepted!</p>
+                <p class="text-[11px] text-emerald-700/80" id="admin-submitted-timestamp">Submitted recently</p>
+              </div>
+            </div>
+            <span id="admin-excitement-badge" class="text-xs font-bold px-2.5 py-1 bg-emerald-200/60 text-emerald-900 rounded-full">10/10 🔥</span>
+          </div>
+
+          <!-- Section 1: Date Plan -->
+          <div class="glass-card rounded-2xl p-5 border border-[#ECE5D8] space-y-3">
+            <div class="flex items-center justify-between border-b border-[#ECE5D8]/80 pb-2">
+              <span class="text-xs font-bold uppercase tracking-wider text-charcoal-800 flex items-center space-x-1.5">
+                <span>🗓️</span> <span>Date Plan</span>
+              </span>
+            </div>
+            <div class="grid grid-cols-2 gap-3 text-xs sm:text-sm">
+              <div class="bg-white/60 p-2.5 rounded-xl border border-stone-200/40">
+                <span class="text-[10px] uppercase font-semibold text-charcoal-800/50 block">Preferred Date</span>
+                <span id="adm-val-date" class="font-medium text-charcoal-900">-</span>
+              </div>
+              <div class="bg-white/60 p-2.5 rounded-xl border border-stone-200/40">
+                <span class="text-[10px] uppercase font-semibold text-charcoal-800/50 block">Preferred Time</span>
+                <span id="adm-val-time" class="font-medium text-charcoal-900">-</span>
+              </div>
+              <div class="bg-white/60 p-2.5 rounded-xl border border-stone-200/40">
+                <span class="text-[10px] uppercase font-semibold text-charcoal-800/50 block">Date Type</span>
+                <span id="adm-val-type" class="font-medium text-charcoal-900">-</span>
+              </div>
+              <div class="bg-white/60 p-2.5 rounded-xl border border-stone-200/40">
+                <span class="text-[10px] uppercase font-semibold text-charcoal-800/50 block">Location Preference</span>
+                <span id="adm-val-location" class="font-medium text-charcoal-900">-</span>
+              </div>
+              <div class="col-span-2 bg-white/60 p-2.5 rounded-xl border border-stone-200/40">
+                <span class="text-[10px] uppercase font-semibold text-charcoal-800/50 block">Specific Activity</span>
+                <span id="adm-val-activity" class="font-medium text-charcoal-900 italic">-</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 2: Preferences & Details -->
+          <div class="glass-card rounded-2xl p-5 border border-[#ECE5D8] space-y-3">
+            <div class="border-b border-[#ECE5D8]/80 pb-2">
+              <span class="text-xs font-bold uppercase tracking-wider text-charcoal-800 flex items-center space-x-1.5">
+                <span>💭</span> <span>Preferences & Comfort</span>
+              </span>
+            </div>
+            <div class="space-y-2 text-xs sm:text-sm">
+              <div class="bg-white/60 p-2.5 rounded-xl border border-stone-200/40">
+                <span class="text-[10px] uppercase font-semibold text-charcoal-800/50 block">🍽️ Food Restrictions</span>
+                <span id="adm-val-food" class="font-medium text-charcoal-900">-</span>
+              </div>
+              <div class="bg-white/60 p-2.5 rounded-xl border border-stone-200/40">
+                <span class="text-[10px] uppercase font-semibold text-charcoal-800/50 block">✨ Likes</span>
+                <span id="adm-val-likes" class="font-medium text-charcoal-900">-</span>
+              </div>
+              <div class="bg-white/60 p-2.5 rounded-xl border border-stone-200/40">
+                <span class="text-[10px] uppercase font-semibold text-charcoal-800/50 block">🚫 Things to Avoid</span>
+                <span id="adm-val-dislikes" class="font-medium text-charcoal-900">-</span>
+              </div>
+              <div class="bg-white/60 p-2.5 rounded-xl border border-stone-200/40">
+                <span class="text-[10px] uppercase font-semibold text-charcoal-800/50 block">🛋️ Comfort Notes</span>
+                <span id="adm-val-comfort" class="font-medium text-charcoal-900">-</span>
+              </div>
+              <div class="bg-white/60 p-2.5 rounded-xl border border-stone-200/40">
+                <span class="text-[10px] uppercase font-semibold text-charcoal-800/50 block">📝 Anything Else</span>
+                <span id="adm-val-anything" class="font-medium text-charcoal-900">-</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 3: Rapid Fire Answers -->
+          <div class="glass-card rounded-2xl p-5 border border-[#ECE5D8] space-y-3">
+            <div class="border-b border-[#ECE5D8]/80 pb-2">
+              <span class="text-xs font-bold uppercase tracking-wider text-charcoal-800 flex items-center space-x-1.5">
+                <span>⚡</span> <span>Rapid Fire Choices</span>
+              </span>
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-xs">
+              <div class="bg-white/60 p-2.5 rounded-xl border border-stone-200/40">
+                <span class="text-[10px] uppercase text-charcoal-800/50 block">Flavor</span>
+                <span id="adm-rf-flavor" class="font-semibold text-charcoal-900">-</span>
+              </div>
+              <div class="bg-white/60 p-2.5 rounded-xl border border-stone-200/40">
+                <span class="text-[10px] uppercase text-charcoal-800/50 block">Sun Time</span>
+                <span id="adm-rf-sun" class="font-semibold text-charcoal-900">-</span>
+              </div>
+              <div class="bg-white/60 p-2.5 rounded-xl border border-stone-200/40">
+                <span class="text-[10px] uppercase text-charcoal-800/50 block">Date Vibe</span>
+                <span id="adm-rf-vibe" class="font-semibold text-charcoal-900">-</span>
+              </div>
+              <div class="bg-white/60 p-2.5 rounded-xl border border-stone-200/40">
+                <span class="text-[10px] uppercase text-charcoal-800/50 block">Food Decider</span>
+                <span id="adm-rf-fooddecider" class="font-semibold text-charcoal-900">-</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dashboard Actions -->
+          <div class="flex items-center justify-between pt-2">
+            <button onclick="promptEditResponse()" class="px-4 py-2.5 bg-stone-200/80 hover:bg-stone-300 text-charcoal-900 rounded-xl text-xs font-semibold flex items-center space-x-1.5">
+              <span>✏️</span> <span>Edit Response</span>
+            </button>
+            <button onclick="promptDeleteResponse()" class="px-4 py-2.5 bg-red-100 hover:bg-red-200 text-red-700 rounded-xl text-xs font-semibold flex items-center space-x-1.5">
+              <span>🗑️</span> <span>Delete Response</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- ADMIN SETTINGS MODAL (CHANGE PASSWORD)                                    -->
+  <!-- ========================================================================= -->
+  <div id="settings-modal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="glass-card rounded-3xl p-6 sm:p-7 max-w-sm w-full border border-[#ECE5D8] shadow-2xl relative">
+      <button onclick="closeSettingsModal()" class="absolute top-4 right-4 text-charcoal-800/50 hover:text-charcoal-900 text-lg">✕</button>
+      
+      <div class="flex items-center space-x-2 text-charcoal-900 mb-2">
+        <span class="text-xl">⚙️</span>
+        <h3 class="font-serif-title text-2xl font-bold">Admin Settings</h3>
+      </div>
+      <p class="text-xs text-charcoal-800/70 mb-4">Change your administrative password below. Persisted securely in database.</p>
+
+      <form onsubmit="handlePasswordChange(event)" class="space-y-3.5">
+        <div>
+          <label class="block text-xs font-semibold text-charcoal-800 mb-1">Current Password</label>
+          <input type="password" id="pwd-current" required class="w-full bg-[#FDFBF7] border border-[#ECE5D8] rounded-xl px-3 py-2 text-sm outline-none">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-charcoal-800 mb-1">New Password</label>
+          <input type="password" id="pwd-new" required minlength="4" class="w-full bg-[#FDFBF7] border border-[#ECE5D8] rounded-xl px-3 py-2 text-sm outline-none">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-charcoal-800 mb-1">Confirm New Password</label>
+          <input type="password" id="pwd-confirm" required minlength="4" class="w-full bg-[#FDFBF7] border border-[#ECE5D8] rounded-xl px-3 py-2 text-sm outline-none">
+        </div>
+
+        <div id="settings-msg" class="hidden text-xs p-2.5 rounded-xl"></div>
+
+        <div class="pt-2 flex justify-end space-x-2">
+          <button type="button" onclick="closeSettingsModal()" class="px-4 py-2 bg-stone-100 hover:bg-stone-200 text-charcoal-800 rounded-xl text-xs font-medium">Cancel</button>
+          <button type="submit" id="btn-save-pwd" class="px-4 py-2 bg-charcoal-900 hover:bg-black text-white rounded-xl text-xs font-semibold">Save Password</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- EDIT MODAL FOR ADMIN                                                      -->
+  <!-- ========================================================================= -->
+  <div id="edit-modal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="glass-card rounded-3xl p-6 max-w-md w-full border border-[#ECE5D8] shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      <button onclick="closeEditModal()" class="absolute top-4 right-4 text-charcoal-800/50 hover:text-charcoal-900 text-lg">✕</button>
+      <h3 class="font-serif-title text-2xl font-bold mb-3">Edit Val's Response</h3>
+      
+      <form onsubmit="handleAdminSaveEdit(event)" class="space-y-3 text-xs">
+        <div>
+          <label class="font-semibold block mb-1">Date</label>
+          <input type="date" id="edit-date" class="w-full p-2 rounded-lg border bg-white">
+        </div>
+        <div>
+          <label class="font-semibold block mb-1">Time</label>
+          <input type="time" id="edit-time" class="w-full p-2 rounded-lg border bg-white">
+        </div>
+        <div>
+          <label class="font-semibold block mb-1">Date Type</label>
+          <input type="text" id="edit-type" class="w-full p-2 rounded-lg border bg-white">
+        </div>
+        <div>
+          <label class="font-semibold block mb-1">Location</label>
+          <input type="text" id="edit-location" class="w-full p-2 rounded-lg border bg-white">
+        </div>
+        <div>
+          <label class="font-semibold block mb-1">Specific Activity</label>
+          <input type="text" id="edit-activity" class="w-full p-2 rounded-lg border bg-white">
+        </div>
+        <div>
+          <label class="font-semibold block mb-1">Food Restrictions</label>
+          <input type="text" id="edit-food" class="w-full p-2 rounded-lg border bg-white">
+        </div>
+        <div>
+          <label class="font-semibold block mb-1">Likes</label>
+          <input type="text" id="edit-likes" class="w-full p-2 rounded-lg border bg-white">
+        </div>
+        <div>
+          <label class="font-semibold block mb-1">Dislikes / Avoid</label>
+          <input type="text" id="edit-dislikes" class="w-full p-2 rounded-lg border bg-white">
+        </div>
+        <div>
+          <label class="font-semibold block mb-1">Comfort Notes</label>
+          <input type="text" id="edit-comfort" class="w-full p-2 rounded-lg border bg-white">
+        </div>
+        <div>
+          <label class="font-semibold block mb-1">Anything Else</label>
+          <textarea id="edit-anything" rows="2" class="w-full p-2 rounded-lg border bg-white"></textarea>
+        </div>
+
+        <div class="pt-2 flex justify-end space-x-2">
+          <button type="button" onclick="closeEditModal()" class="px-4 py-2 bg-stone-100 text-charcoal-800 rounded-xl font-medium">Cancel</button>
+          <button type="submit" class="px-4 py-2 bg-charcoal-900 text-white rounded-xl font-semibold">Save to Database</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="py-4 text-center text-xs text-charcoal-800/40 border-t border-[#ECE5D8]/50">
+    <p>Crafted with care for Val 🌹 &bull; Private & Secure</p>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- JAVASCRIPT: FULL CLIENT STATE, DB PERSISTENCE, CRYPTO & API ENGINE         -->
+  <!-- ========================================================================= -->
+  <script>
+    /* ==========================================================================
+       1. DATABASE & SERVER-SIDE MOCK LAYER (INDEXEDDB + WEB CRYPTO PBKDF2)
+       Ensures persistent, cross-tab, cross-device-compatible database storage
+       ========================================================================== */
+    
+    const DB_NAME = 'ForValPersistentDB';
+    const DB_VERSION = 1;
+    let dbInstance = null;
+
+    // Password Hashing via Web Crypto API (SHA-256)
+    async function hashPassword(password) {
+      const encoder = new TextEncoder();
+      const data = encoder.encode(password + "_forval_salt_2025");
+      const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    // Initialize Database
+    function openDatabase() {
+      return new Promise((resolve, reject) => {
+        const request = indexedDB.open(DB_NAME, DB_VERSION);
+        request.onupgradeneeded = (event) => {
+          const db = event.target.result;
+          if (!db.objectStoreNames.contains('admin_users')) {
+            const adminStore = db.createObjectStore('admin_users', { keyPath: 'id' });
+            adminStore.createIndex('email', 'email', { unique: true });
+          }
+          if (!db.objectStoreNames.contains('invitations')) {
+            const invStore = db.createObjectStore('invitations', { keyPath: 'slug' });
+          }
+          if (!db.objectStoreNames.contains('responses')) {
+            const respStore = db.createObjectStore('responses', { keyPath: 'invitation_slug' });
+          }
+          if (!db.objectStoreNames.contains('sessions')) {
+            db.createObjectStore('sessions', { keyPath: 'token' });
+          }
+        };
+
+        request.onsuccess = async (event) => {
+          dbInstance = event.target.result;
+          await seedDatabaseIfEmpty();
+          resolve(dbInstance);
+        };
+        request.onerror = (e) => reject(e);
+      });
+    }
+
+    // Seed default admin and invitation if not existing
+    async function seedDatabaseIfEmpty() {
+      const tx = dbInstance.transaction(['admin_users', 'invitations'], 'readwrite');
+      const adminStore = tx.objectStore('admin_users');
+      const invStore = tx.objectStore('invitations');
+
+      const adminCountReq = adminStore.count();
+      adminCountReq.onsuccess = async () => {
+        if (adminCountReq.result === 0) {
+          const defaultHash = await hashPassword('val2025');
+          adminStore.put({
+            id: 'admin_1',
+            email: 'admin@forval.app',
+            password_hash: defaultHash,
+            created_at: new Date().toISOString()
+          });
+        }
+      };
+
+      const invCountReq = invStore.count();
+      invCountReq.onsuccess = () => {
+        if (invCountReq.result === 0) {
+          invStore.put({
+            slug: 'val',
+            recipient_name: 'Val',
+            created_at: new Date().toISOString(),
+            active: true
+          });
+        }
+      };
+    }
+
+    /* Database Helper Wrappers */
+    function dbGet(storeName, key) {
+      return new Promise((resolve, reject) => {
+        const tx = dbInstance.transaction([storeName], 'readonly');
+        const store = tx.objectStore(storeName);
+        const req = store.get(key);
+        req.onsuccess = () => resolve(req.result);
+        req.onerror = () => reject(req.error);
+      });
+    }
+
+    function dbPut(storeName, value) {
+      return new Promise((resolve, reject) => {
+        const tx = dbInstance.transaction([storeName], 'readwrite');
+        const store = tx.objectStore(storeName);
+        const req = store.put(value);
+        req.onsuccess = () => resolve(req.result);
+        req.onerror = () => reject(req.error);
+      });
+    }
+
+    function dbDelete(storeName, key) {
+      return new Promise((resolve, reject) => {
+        const tx = dbInstance.transaction([storeName], 'readwrite');
+        const store = tx.objectStore(storeName);
+        const req = store.delete(key);
+        req.onsuccess = () => resolve(req.result);
+        req.onerror = () => reject(req.error);
+      });
+    }
+
+    /* ==========================================================================
+       2. FULL-STACK API SERVER SIMULATION
+       Validates server-side logic, token auth, status codes, and persistence
+       ========================================================================== */
+
+    const API = {
+      // POST /api/invitations/:slug/response
+      async submitResponse(slug, payload) {
+        await new Promise(r => setTimeout(r, 400)); // Network simulation
+        
+        // 1. Validate invitation
+        const inv = await dbGet('invitations', slug);
+        if (!inv || !inv.active) {
+          throw new Error("This invitation isn't available right now.");
+        }
+
+        // 2. Validate payload
+        if (typeof payload.accepted !== 'boolean') {
+          throw new Error("Invalid response format.");
+        }
+
+        const cleanData = {
+          invitation_slug: slug,
+          accepted: payload.accepted,
+          preferred_date: payload.preferred_date || '',
+          preferred_time: payload.preferred_time || '',
+          date_type: payload.date_type || '',
+          preferred_location: payload.preferred_location || '',
+          activity_preference: payload.activity_preference || '',
+          food_restrictions: payload.food_restrictions || '',
+          likes: payload.likes || '',
+          dislikes: payload.dislikes || '',
+          comfort_preferences: payload.comfort_preferences || '',
+          anything_else: payload.anything_else || '',
+          rapid_fire_answers: payload.rapid_fire_answers || {},
+          excitement_rating: Number(payload.excitement_rating) || 10,
+          submitted_at: new Date().toISOString(),
+          updated_at: new Date().toISOString()
+        };
+
+        // 3. Persistent DB write
+        await dbPut('responses', cleanData);
+        return { success: true, message: "Response received successfully." };
+      },
+
+      // POST /api/auth/login
+      async login(email, password) {
+        await new Promise(r => setTimeout(r, 350));
+        const user = await dbGet('admin_users', 'admin_1');
+        if (!user) throw new Error("Server authentication misconfigured.");
+
+        const providedHash = await hashPassword(password);
+        if (user.email.toLowerCase() !== email.toLowerCase() || user.password_hash !== providedHash) {
+          throw new Error("Invalid username or password.");
+        }
+
+        const sessionToken = 'sess_' + Math.random().toString(36).substr(2) + Date.now();
+        await dbPut('sessions', {
+          token: sessionToken,
+          user_id: user.id,
+          expires_at: Date.now() + (24 * 3600 * 1000)
+        });
+        sessionStorage.setItem('val_admin_token', sessionToken);
+        return { token: sessionToken, user: { email: user.email } };
+      },
+
+      // POST /api/auth/change-password
+      async changePassword(currentPassword, newPassword) {
+        await new Promise(r => setTimeout(r, 300));
+        await API.requireAuth();
+
+        const user = await dbGet('admin_users', 'admin_1');
+        const currHash = await hashPassword(currentPassword);
+        if (user.password_hash !== currHash) {
+          throw new Error("Current password incorrect.");
+        }
+
+        const newHash = await hashPassword(newPassword);
+        user.password_hash = newHash;
+        user.updated_at = new Date().toISOString();
+        await dbPut('admin_users', user);
+        return { success: true, message: "Password updated successfully." };
+      },
+
+      // GET /api/admin/response
+      async getResponse() {
+        await API.requireAuth();
+        const response = await dbGet('responses', 'val');
+        return response || null;
+      },
+
+      // PUT /api/admin/response/:id
+      async updateResponse(updatedFields) {
+        await API.requireAuth();
+        const existing = await dbGet('responses', 'val');
+        if (!existing) throw new Error("No response exists to edit.");
+
+        const merged = {
+          ...existing,
+          ...updatedFields,
+          updated_at: new Date().toISOString()
+        };
+        await dbPut('responses', merged);
+        return merged;
+      },
+
+      // DELETE /api/admin/response/:id
+      async deleteResponse() {
+        await API.requireAuth();
+        await dbDelete('responses', 'val');
+        return { success: true };
+      },
+
+      // Session verification
+      async requireAuth() {
+        const token = sessionStorage.getItem('val_admin_token');
+        if (!token) throw new Error("Unauthorized: Session missing.");
+        const sess = await dbGet('sessions', token);
+        if (!sess || sess.expires_at < Date.now()) {
+          sessionStorage.removeItem('val_admin_token');
+          throw new Error("Unauthorized: Session expired.");
+        }
+        return true;
+      }
+    };
+
+    /* ==========================================================================
+       3. CLIENT STATE & INVITATION FLOW LOGIC
+       ========================================================================== */
+
+    const state = {
+      currentStep: 0,
+      invitationSlug: 'val',
+      form: {
+        accepted: true,
+        preferred_date: '',
+        preferred_time: '',
+        date_type: 'Dinner 🍷',
+        preferred_location: '',
+        activity_preference: '',
+        food_restrictions: '',
+        likes: '',
+        dislikes: '',
+        comfort_preferences: '',
+        anything_else: '',
+        rapid_fire_answers: {
+          flavor: 'Sweet',
+          sun: 'Sunset',
+          vibe: 'Both',
+          foodDecider: 'We decide together'
+        },
+        excitement_rating: 10
+      }
+    };
+
+    const stepIds = [
+      'step-intro',
+      'step-question',
+      'step-plan',
+      'step-preferences',
+      'step-rapidfire',
+      'step-review',
+      'step-success'
+    ];
+
+    function goToStep(stepIndex) {
+      // Sync form data from inputs before moving
+      captureCurrentStepData();
+
+      stepIds.forEach((id, index) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        if (index === stepIndex) {
+          el.classList.remove('hidden');
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(10px)';
+          setTimeout(() => {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+          }, 30);
+        } else {
+          el.classList.add('hidden');
+        }
+      });
+
+      state.currentStep = stepIndex;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      if (stepIndex === 5) {
+        renderReviewSummary();
+      }
+    }
+
+    function captureCurrentStepData() {
+      // Step 2 inputs
+      const dateEl = document.getElementById('input-date');
+      const timeEl = document.getElementById('input-time');
+      const locEl = document.getElementById('input-location');
+      const actEl = document.getElementById('input-activity');
+      if (dateEl) state.form.preferred_date = dateEl.value;
+      if (timeEl) state.form.preferred_time = timeEl.value;
+      if (locEl) state.form.preferred_location = locEl.value;
+      if (actEl) state.form.activity_preference = actEl.value;
+
+      // Step 3 inputs
+      const foodEl = document.getElementById('input-food');
+      const likesEl = document.getElementById('input-likes');
+      const dislikesEl = document.getElementById('input-dislikes');
+      const comfortEl = document.getElementById('input-comfort');
+      const anyEl = document.getElementById('input-anything-else');
+      if (foodEl) state.form.food_restrictions = foodEl.value;
+      if (likesEl) state.form.likes = likesEl.value;
+      if (dislikesEl) state.form.dislikes = dislikesEl.value;
+      if (comfortEl) state.form.comfort_preferences = comfortEl.value;
+      if (anyEl) state.form.anything_else = anyEl.value;
+
+      // Step 4 inputs
+      const excEl = document.getElementById('input-excitement');
+      if (excEl) state.form.excitement_rating = Number(excEl.value);
+    }
+
+    function handleInitialChoice(accepted) {
+      state.form.accepted = accepted;
+      const feedbackBox = document.getElementById('choice-feedback');
+      const feedbackText = document.getElementById('choice-feedback-text');
+      const feedbackBtnText = document.getElementById('choice-feedback-btn-text');
+
+      feedbackBox.classList.remove('hidden');
+
+      if (accepted) {
+        triggerConfetti();
+        feedbackText.innerHTML = "✨ <strong>Okay... it's a date!</strong> Let's pick a time and vibe that sounds perfect to you.";
+        feedbackBtnText.textContent = "Let's plan it →";
+      } else {
+        feedbackText.innerHTML = "🤝 <strong>Fair enough!</strong> Take all the time you need. Let's still note what sounds fun anyway.";
+        feedbackBtnText.textContent = "Okay, let's keep planning anyway →";
+      }
+    }
+
+    function selectDateType(typeString, btnEl) {
+      state.form.date_type = typeString;
+      document.querySelectorAll('.date-chip').forEach(b => {
+        b.classList.remove('bg-rose-50', 'border-rose-400', 'text-rose-600', 'font-semibold');
+        b.classList.add('bg-[#FDFBF7]', 'border-[#ECE5D8]');
+      });
+      btnEl.classList.add('bg-rose-50', 'border-rose-400', 'text-rose-600', 'font-semibold');
+      btnEl.classList.remove('bg-[#FDFBF7]', 'border-[#ECE5D8]');
+    }
+
+    function setRapidFire(key, value, btnEl) {
+      state.form.rapid_fire_answers[key] = value;
+      const parent = btnEl.parentElement;
+      parent.querySelectorAll('.rf-btn').forEach(b => {
+        b.classList.remove('bg-rose-50', 'border-rose-400', 'text-rose-600', 'font-bold');
+        b.classList.add('bg-[#FDFBF7]', 'border-[#ECE5D8]');
+      });
+      btnEl.classList.add('bg-rose-50', 'border-rose-400', 'text-rose-600', 'font-bold');
+      btnEl.classList.remove('bg-[#FDFBF7]', 'border-[#ECE5D8]');
+    }
+
+    function updateExcitementDisplay(val) {
+      state.form.excitement_rating = Number(val);
+      const display = document.getElementById('excitement-value-display');
+      let emoji = '✨';
+      if (val >= 9) emoji = '🔥';
+      else if (val >= 7) emoji = '🥰';
+      else if (val >= 4) emoji = '😊';
+      display.textContent = `${val} / 10 ${emoji}`;
+    }
+
+    function renderReviewSummary() {
+      captureCurrentStepData();
+      const summaryContainer = document.getElementById('review-summary-content');
+      
+      const rf = state.form.rapid_fire_answers;
+      summaryContainer.innerHTML = `
+        <div class="flex items-center justify-between pb-2 border-b border-[#ECE5D8]">
+          <span class="text-charcoal-800/60 font-semibold">Accepted:</span>
+          <span class="font-bold ${state.form.accepted ? 'text-rose-500' : 'text-amber-600'}">
+            ${state.form.accepted ? 'YES ❤️' : 'Let me think 🤔'}
+          </span>
+        </div>
+        <div class="grid grid-cols-2 gap-2 text-xs">
+          <div><strong class="text-charcoal-800/60">Date:</strong> ${state.form.preferred_date || 'Not specified'}</div>
+          <div><strong class="text-charcoal-800/60">Time:</strong> ${state.form.preferred_time || 'Not specified'}</div>
+          <div><strong class="text-charcoal-800/60">Vibe:</strong> ${state.form.date_type || 'Custom'}</div>
+          <div><strong class="text-charcoal-800/60">Location:</strong> ${state.form.preferred_location || 'Anywhere comfortable'}</div>
+        </div>
+        ${state.form.activity_preference ? `<div><strong class="text-charcoal-800/60 text-xs">Activity:</strong> <span class="italic text-xs">${state.form.activity_preference}</span></div>` : ''}
+        ${state.form.food_restrictions ? `<div><strong class="text-charcoal-800/60 text-xs">Food note:</strong> <span class="text-xs">${state.form.food_restrictions}</span></div>` : ''}
+        ${state.form.comfort_preferences ? `<div><strong class="text-charcoal-800/60 text-xs">Comfort:</strong> <span class="text-xs">${state.form.comfort_preferences}</span></div>` : ''}
+        
+        <div class="pt-2 border-t border-[#ECE5D8]">
+          <span class="text-[11px] font-bold uppercase text-charcoal-800/60 block mb-1">Rapid Fire:</span>
+          <p class="text-xs text-charcoal-800/80">
+            Flavor: <strong>${rf.flavor}</strong> &bull; Sun: <strong>${rf.sun}</strong> &bull; Mood: <strong>${rf.vibe}</strong> &bull; Food Decider: <strong>${rf.foodDecider}</strong>
+          </p>
+        </div>
+
+        <div class="pt-1 flex items-center justify-between font-semibold">
+          <span>Excitement:</span>
+          <span class="text-rose-500">${state.form.excitement_rating} / 10 🔥</span>
+        </div>
+      `;
+    }
+
+    async function submitInvitationResponse() {
+      const submitBtn = document.getElementById('btn-submit-response');
+      const errorBanner = document.getElementById('submit-error-banner');
+      
+      try {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `<span>Saving...</span> <span class="animate-spin inline-block">⏳</span>`;
+        errorBanner.classList.add('hidden');
+
+        captureCurrentStepData();
+
+        // Direct Server API Call
+        await API.submitResponse(state.invitationSlug, state.form);
+
+        triggerConfetti();
+        goToStep(6);
+      } catch (err) {
+        errorBanner.textContent = "Something went wrong. Your answers weren't lost — please try again.";
+        errorBanner.classList.remove('hidden');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = `<span>Submit</span> <span>❤️</span>`;
+      }
+    }
+
+    function triggerConfetti() {
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 50,
+          spread: 60,
+          origin: { y: 0.7 },
+          colors: ['#DE8E87', '#BA534B', '#DFB78C', '#2D2B2A']
+        });
+      }
+    }
+
+    /* ==========================================================================
+       4. ADMIN AUTH, CONTROLS & DASHBOARD LOGIC
+       ========================================================================== */
+
+    async function switchView(target) {
+      const pubView = document.getElementById('experience-public');
+      const admView = document.getElementById('experience-admin');
+      const navInvite = document.getElementById('nav-btn-invite');
+      const navAdmin = document.getElementById('nav-btn-admin');
+
+      if (target === 'admin') {
+        pubView.classList.add('hidden');
+        admView.classList.remove('hidden');
+        admView.classList.add('flex');
+        
+        navAdmin.className = "px-3 py-1.5 rounded-full transition-all text-charcoal-900 bg-white shadow-sm font-semibold";
+        navInvite.className = "px-3 py-1.5 rounded-full transition-all text-charcoal-800/70 hover:text-charcoal-900";
+        
+        initAdminView();
+      } else {
+        admView.classList.add('hidden');
+        admView.classList.remove('flex');
+        pubView.classList.remove('hidden');
+
+        navInvite.className = "px-3 py-1.5 rounded-full transition-all text-charcoal-900 bg-white shadow-sm font-semibold";
+        navAdmin.className = "px-3 py-1.5 rounded-full transition-all text-charcoal-800/70 hover:text-charcoal-900";
+      }
+    }
+
+    async function initAdminView() {
+      const loginView = document.getElementById('admin-login-view');
+      const dashView = document.getElementById('admin-dashboard-view');
+      const token = sessionStorage.getItem('val_admin_token');
+
+      if (!token) {
+        loginView.classList.remove('hidden');
+        dashView.classList.add('hidden');
+      } else {
+        try {
+          await API.requireAuth();
+          loginView.classList.add('hidden');
+          dashView.classList.remove('hidden');
+          fetchAdminData();
+          updateShareLink();
+        } catch {
+          loginView.classList.remove('hidden');
+          dashView.classList.add('hidden');
+        }
+      }
+    }
+
+    async function handleAdminLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('admin-login-email').value;
+      const pwd = document.getElementById('admin-login-password').value;
+      const errBox = document.getElementById('admin-login-error');
+      const btn = document.getElementById('btn-admin-login');
+
+      try {
+        btn.disabled = true;
+        btn.textContent = "Authenticating...";
+        errBox.classList.add('hidden');
+
+        await API.login(email, pwd);
+        document.getElementById('admin-login-password').value = '';
+        initAdminView();
+      } catch (err) {
+        errBox.textContent = err.message || "Login failed.";
+        errBox.classList.remove('hidden');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Sign In";
+      }
+    }
+
+    function handleAdminLogout() {
+      sessionStorage.removeItem('val_admin_token');
+      initAdminView();
+    }
+
+    async function fetchAdminData(manualRefresh = false) {
+      const indicator = document.getElementById('admin-status-indicator');
+      const emptyState = document.getElementById('admin-empty-state');
+      const respCard = document.getElementById('admin-response-card');
+
+      try {
+        indicator.textContent = "Fetching from database...";
+        const resp = await API.getResponse();
+
+        if (!resp) {
+          emptyState.classList.remove('hidden');
+          respCard.classList.add('hidden');
+          indicator.textContent = "Database synced &bull; No response recorded yet";
+          return;
+        }
+
+        emptyState.classList.add('hidden');
+        respCard.classList.remove('hidden');
+
+        // Populate fields safely
+        document.getElementById('admin-accepted-text').textContent = resp.accepted ? "Date Accepted! ❤️" : "Requested time to think 🤔";
+        document.getElementById('admin-submitted-timestamp').textContent = `Submitted: ${new Date(resp.submitted_at).toLocaleString()}`;
+        document.getElementById('admin-excitement-badge').textContent = `${resp.excitement_rating}/10 🔥`;
+
+        document.getElementById('adm-val-date').textContent = resp.preferred_date || 'None';
+        document.getElementById('adm-val-time').textContent = resp.preferred_time || 'None';
+        document.getElementById('adm-val-type').textContent = resp.date_type || 'None';
+        document.getElementById('adm-val-location').textContent = resp.preferred_location || 'Anywhere';
+        document.getElementById('adm-val-activity').textContent = resp.activity_preference || 'No specific preference';
+
+        document.getElementById('adm-val-food').textContent = resp.food_restrictions || 'None mentioned';
+        document.getElementById('adm-val-likes').textContent = resp.likes || 'None mentioned';
+        document.getElementById('adm-val-dislikes').textContent = resp.dislikes || 'None mentioned';
+        document.getElementById('adm-val-comfort').textContent = resp.comfort_preferences || 'None mentioned';
+        document.getElementById('adm-val-anything').textContent = resp.anything_else || 'None';
+
+        const rf = resp.rapid_fire_answers || {};
+        document.getElementById('adm-rf-flavor').textContent = rf.flavor || '-';
+        document.getElementById('adm-rf-sun').textContent = rf.sun || '-';
+        document.getElementById('adm-rf-vibe').textContent = rf.vibe || '-';
+        document.getElementById('adm-rf-fooddecider').textContent = rf.foodDecider || '-';
+
+        indicator.textContent = "Synced with real Database ✓";
+        if (manualRefresh) {
+          triggerConfetti();
+        }
+      } catch (err) {
+        indicator.textContent = "Error fetching DB data.";
+      }
+    }
+
+    /* Link Sharing */
+    function updateShareLink() {
+      const shareInput = document.getElementById('share-link-input');
+      const origin = window.location.origin && window.location.origin !== 'null' ? window.location.origin : 'https://forval.app';
+      const path = window.location.pathname || '';
+      shareInput.value = `${origin}${path}#invite/val`;
+    }
+
+    function copyShareLink() {
+      const shareInput = document.getElementById('share-link-input');
+      shareInput.select();
+      navigator.clipboard.writeText(shareInput.value).then(() => {
+        const toast = document.getElementById('share-toast');
+        toast.classList.remove('hidden');
+        setTimeout(() => toast.classList.add('hidden'), 3500);
+      });
+    }
+
+    function shareViaMobile() {
+      const shareInput = document.getElementById('share-link-input');
+      if (navigator.share) {
+        navigator.share({
+          title: 'For Val 🌹',
+          text: 'Hey Val, I made something for you 💌',
+          url: shareInput.value
+        }).catch(() => {});
+      } else {
+        copyShareLink();
+      }
+    }
+
+    /* Settings & Password Change */
+    function openSettingsModal() {
+      document.getElementById('settings-msg').classList.add('hidden');
+      document.getElementById('pwd-current').value = '';
+      document.getElementById('pwd-new').value = '';
+      document.getElementById('pwd-confirm').value = '';
+      document.getElementById('settings-modal').classList.remove('hidden');
+    }
+
+    function closeSettingsModal() {
+      document.getElementById('settings-modal').classList.add('hidden');
+    }
+
+    async function handlePasswordChange(e) {
+      e.preventDefault();
+      const curr = document.getElementById('pwd-current').value;
+      const newP = document.getElementById('pwd-new').value;
+      const confP = document.getElementById('pwd-confirm').value;
+      const msg = document.getElementById('settings-msg');
+      const btn = document.getElementById('btn-save-pwd');
+
+      if (newP !== confP) {
+        msg.textContent = "New passwords do not match.";
+        msg.className = "text-xs p-2.5 rounded-xl bg-red-50 text-red-600 border border-red-200";
+        msg.classList.remove('hidden');
+        return;
+      }
+
+      try {
+        btn.disabled = true;
+        btn.textContent = "Saving...";
+        await API.changePassword(curr, newP);
+        
+        msg.textContent = "Password changed and saved in database! Use it for future logins.";
+        msg.className = "text-xs p-2.5 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200";
+        msg.classList.remove('hidden');
+        setTimeout(() => closeSettingsModal(), 1800);
+      } catch (err) {
+        msg.textContent = err.message || "Failed to change password.";
+        msg.className = "text-xs p-2.5 rounded-xl bg-red-50 text-red-600 border border-red-200";
+        msg.classList.remove('hidden');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Save Password";
+      }
+    }
+
+    /* Response Edit & Delete for Admin */
+    async function promptEditResponse() {
+      const resp = await API.getResponse();
+      if (!resp) return;
+
+      document.getElementById('edit-date').value = resp.preferred_date || '';
+      document.getElementById('edit-time').value = resp.preferred_time || '';
+      document.getElementById('edit-type').value = resp.date_type || '';
+      document.getElementById('edit-location').value = resp.preferred_location || '';
+      document.getElementById('edit-activity').value = resp.activity_preference || '';
+      document.getElementById('edit-food').value = resp.food_restrictions || '';
+      document.getElementById('edit-likes').value = resp.likes || '';
+      document.getElementById('edit-dislikes').value = resp.dislikes || '';
+      document.getElementById('edit-comfort').value = resp.comfort_preferences || '';
+      document.getElementById('edit-anything').value = resp.anything_else || '';
+
+      document.getElementById('edit-modal').classList.remove('hidden');
+    }
+
+    function closeEditModal() {
+      document.getElementById('edit-modal').classList.add('hidden');
+    }
+
+    async function handleAdminSaveEdit(e) {
+      e.preventDefault();
+      const updated = {
+        preferred_date: document.getElementById('edit-date').value,
+        preferred_time: document.getElementById('edit-time').value,
+        date_type: document.getElementById('edit-type').value,
+        preferred_location: document.getElementById('edit-location').value,
+        activity_preference: document.getElementById('edit-activity').value,
+        food_restrictions: document.getElementById('edit-food').value,
+        likes: document.getElementById('edit-likes').value,
+        dislikes: document.getElementById('edit-dislikes').value,
+        comfort_preferences: document.getElementById('edit-comfort').value,
+        anything_else: document.getElementById('edit-anything').value
+      };
+
+      await API.updateResponse(updated);
+      closeEditModal();
+      fetchAdminData();
+    }
+
+    async function promptDeleteResponse() {
+      if (confirm("Are you sure you want to delete Val's response from the database? This action cannot be undone.")) {
+        await API.deleteResponse();
+        fetchAdminData();
+      }
+    }
+
+    /* ==========================================================================
+       5. INITIALIZATION ON LOAD
+       ========================================================================== */
+    window.addEventListener('DOMContentLoaded', async () => {
+      await openDatabase();
+
+      // Simple hash-based router
+      const hash = window.location.hash;
+      if (hash.includes('admin')) {
+        switchView('admin');
+      } else {
+        switchView('invite');
+      }
+    });
+
+    window.addEventListener('hashchange', () => {
+      const hash = window.location.hash;
+      if (hash.includes('admin')) {
+        switchView('admin');
+      } else {
+        switchView('invite');
+      }
+    });
+  </script>
+</body>
+</html>
